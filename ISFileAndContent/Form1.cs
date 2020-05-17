@@ -36,8 +36,8 @@ namespace ISFileAndContent
 
         private void btn_search_Click(object sender, EventArgs e)
         {
-            string folderPath = @"D:\timingtask\dksource\";
-            //string folderPath = tb_folderPath.Text;
+            //string folderPath = @"D:\timingtask\dksource\";
+            string folderPath = tb_folderPath.Text;
             QueryDto queryDto = GetSearchConditon(folderPath);
             if (queryDto != null)
                 PageData(folderPath, queryDto);
@@ -112,7 +112,7 @@ namespace ISFileAndContent
             foreach (var fi in fileList)
             {
                 //如果开启了内容搜索，则需要筛选文件的后缀
-                if (queryCondition.OpenKey && supportSuffix.Contains(fi.Extension.ToLower()))
+                if (queryCondition.OpenKey)
                 {
                     FileModelDto fm = new FileModelDto();
                     fm.FileName = fi.Name.ToLower();
@@ -125,8 +125,8 @@ namespace ISFileAndContent
                     fm.FileSize = System.Math.Ceiling(fi.Length / 1024.0) + " KB";
                     fm.Msg = "等待中…";
 
-                    string content = FolderUtil.FileHelper.ReadTxtFile(fi.FullName);
-                    if (content.Contains(queryCondition.ContentKey))
+                    string content = FolderUtil.FileHelper.ReadFile(fi.FullName);
+                    if (content!=null && content.Contains(queryCondition.ContentKey))
                         fmList.Add(fm);
                 }
                 else

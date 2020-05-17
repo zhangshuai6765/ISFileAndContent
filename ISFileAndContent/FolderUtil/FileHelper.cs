@@ -1,4 +1,5 @@
 ﻿using ISFileAndContent.Model;
+using ISFileAndContent.NPOIUtil;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -395,7 +396,7 @@ namespace ISFileAndContent.FolderUtil
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>
-        public static string ReadTxtFile(string filePath)
+        private static string ReadTxtFile(string filePath)
         {
             int counter = 0;//文件行数
             string line;//文件行内容
@@ -411,6 +412,41 @@ namespace ISFileAndContent.FolderUtil
 
             file.Close();
             return fileContent.ToString();
+        }
+
+        public static string ReadFile(string filePath)
+        {
+            string fileContent = string.Empty;
+            OfficeUtil util = null;
+            FileInfo fi = new FileInfo(filePath);
+            switch(fi.Extension.ToLower())
+            {
+                case ".xml":
+                case ".txt":
+                case ".cs":
+                case ".csv":
+                    fileContent = ReadTxtFile(filePath);
+                    break;
+                //case ".doc":
+                case ".docx":
+                    util = new WordUtil();
+                    fileContent = util.Read(filePath);
+                    break;
+                case ".xls":
+                case ".xlsx":
+                    util = new ExcelUtil();
+                    fileContent = util.Read(filePath);
+                    break;
+                case ".ppt":
+                case ".pptx":
+                    util = new PptUtil();
+                    fileContent = util.Read(filePath);
+                    break;
+                default:
+                    break;
+            }
+
+            return fileContent;
         }
     }
 }

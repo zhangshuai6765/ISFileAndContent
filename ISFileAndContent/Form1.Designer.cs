@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.btn_search = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cb_fileOn = new System.Windows.Forms.CheckBox();
             this.cb_openkey = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.tb_contentkey = new System.Windows.Forms.TextBox();
@@ -45,22 +46,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_clear = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.dg_pageData = new System.Windows.Forms.DataGridView();
-            this.cb_fileOn = new System.Windows.Forms.CheckBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btn_home = new System.Windows.Forms.Button();
-            this.btn_prePage = new System.Windows.Forms.Button();
-            this.btn_nextPage = new System.Windows.Forms.Button();
-            this.btn_lastPage = new System.Windows.Forms.Button();
-            this.lb_page = new System.Windows.Forms.Label();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.bizNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fileNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fileOnDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.filePathDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,13 +56,25 @@
             this.fileSizeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msgDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fileModelDtoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.lb_page = new System.Windows.Forms.Label();
+            this.btn_lastPage = new System.Windows.Forms.Button();
+            this.btn_nextPage = new System.Windows.Forms.Button();
+            this.btn_prePage = new System.Windows.Forms.Button();
+            this.btn_home = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dg_pageData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileModelDtoBindingSource)).BeginInit();
+            this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.fileModelDtoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // btn_search
@@ -109,6 +109,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(810, 162);
             this.panel1.TabIndex = 1;
+            // 
+            // cb_fileOn
+            // 
+            this.cb_fileOn.AutoSize = true;
+            this.cb_fileOn.Location = new System.Drawing.Point(107, 95);
+            this.cb_fileOn.Name = "cb_fileOn";
+            this.cb_fileOn.Size = new System.Drawing.Size(120, 16);
+            this.cb_fileOn.TabIndex = 16;
+            this.cb_fileOn.Text = "是否开启日期搜索";
+            this.cb_fileOn.UseVisualStyleBackColor = true;
+            this.cb_fileOn.CheckedChanged += new System.EventHandler(this.cb_fileOn_CheckedChanged);
             // 
             // cb_openkey
             // 
@@ -233,6 +244,92 @@
             this.panel2.Size = new System.Drawing.Size(810, 396);
             this.panel2.TabIndex = 2;
             // 
+            // dg_pageData
+            // 
+            this.dg_pageData.AutoGenerateColumns = false;
+            this.dg_pageData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dg_pageData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.bizNameDataGridViewTextBoxColumn,
+            this.Column1,
+            this.fileNameDataGridViewTextBoxColumn,
+            this.fileOnDataGridViewTextBoxColumn,
+            this.filePathDataGridViewTextBoxColumn,
+            this.statusDataGridViewTextBoxColumn,
+            this.fileSizeDataGridViewTextBoxColumn,
+            this.msgDataGridViewTextBoxColumn});
+            this.dg_pageData.DataSource = this.fileModelDtoBindingSource;
+            this.dg_pageData.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dg_pageData.Location = new System.Drawing.Point(0, 40);
+            this.dg_pageData.Name = "dg_pageData";
+            this.dg_pageData.ReadOnly = true;
+            this.dg_pageData.RowTemplate.Height = 23;
+            this.dg_pageData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dg_pageData.Size = new System.Drawing.Size(810, 356);
+            this.dg_pageData.TabIndex = 0;
+            this.dg_pageData.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dg_pageData_CellMouseDown);
+            // 
+            // bizNameDataGridViewTextBoxColumn
+            // 
+            this.bizNameDataGridViewTextBoxColumn.DataPropertyName = "BizName";
+            this.bizNameDataGridViewTextBoxColumn.HeaderText = "BizName";
+            this.bizNameDataGridViewTextBoxColumn.Name = "bizNameDataGridViewTextBoxColumn";
+            this.bizNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.bizNameDataGridViewTextBoxColumn.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "DirectoryName";
+            this.Column1.HeaderText = "目录";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // fileNameDataGridViewTextBoxColumn
+            // 
+            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "ShowName";
+            this.fileNameDataGridViewTextBoxColumn.HeaderText = "文件名";
+            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
+            this.fileNameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fileOnDataGridViewTextBoxColumn
+            // 
+            this.fileOnDataGridViewTextBoxColumn.DataPropertyName = "FileOn";
+            this.fileOnDataGridViewTextBoxColumn.HeaderText = "创建日期";
+            this.fileOnDataGridViewTextBoxColumn.Name = "fileOnDataGridViewTextBoxColumn";
+            this.fileOnDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // filePathDataGridViewTextBoxColumn
+            // 
+            this.filePathDataGridViewTextBoxColumn.DataPropertyName = "FilePath";
+            this.filePathDataGridViewTextBoxColumn.HeaderText = "文件路径";
+            this.filePathDataGridViewTextBoxColumn.Name = "filePathDataGridViewTextBoxColumn";
+            this.filePathDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "状态";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            this.statusDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fileSizeDataGridViewTextBoxColumn
+            // 
+            this.fileSizeDataGridViewTextBoxColumn.DataPropertyName = "FileSize";
+            this.fileSizeDataGridViewTextBoxColumn.HeaderText = "文件大小";
+            this.fileSizeDataGridViewTextBoxColumn.Name = "fileSizeDataGridViewTextBoxColumn";
+            this.fileSizeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // msgDataGridViewTextBoxColumn
+            // 
+            this.msgDataGridViewTextBoxColumn.DataPropertyName = "Msg";
+            this.msgDataGridViewTextBoxColumn.HeaderText = "Msg";
+            this.msgDataGridViewTextBoxColumn.Name = "msgDataGridViewTextBoxColumn";
+            this.msgDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // fileModelDtoBindingSource
+            // 
+            this.fileModelDtoBindingSource.DataSource = typeof(ISFileAndContent.Model.FileModelDto);
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.label2);
@@ -252,40 +349,6 @@
             this.label2.TabIndex = 0;
             this.label2.Text = "查询结果如下";
             // 
-            // dg_pageData
-            // 
-            this.dg_pageData.AutoGenerateColumns = false;
-            this.dg_pageData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dg_pageData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.bizNameDataGridViewTextBoxColumn,
-            this.Column1,
-            this.fileNameDataGridViewTextBoxColumn,
-            this.fileOnDataGridViewTextBoxColumn,
-            this.filePathDataGridViewTextBoxColumn,
-            this.statusDataGridViewTextBoxColumn,
-            this.fileSizeDataGridViewTextBoxColumn,
-            this.msgDataGridViewTextBoxColumn});
-            this.dg_pageData.DataSource = this.fileModelDtoBindingSource;
-            this.dg_pageData.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dg_pageData.Location = new System.Drawing.Point(0, 40);
-            this.dg_pageData.Name = "dg_pageData";
-            this.dg_pageData.RowTemplate.Height = 23;
-            this.dg_pageData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dg_pageData.Size = new System.Drawing.Size(810, 356);
-            this.dg_pageData.TabIndex = 0;
-            this.dg_pageData.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dg_pageData_CellMouseDown);
-            // 
-            // cb_fileOn
-            // 
-            this.cb_fileOn.AutoSize = true;
-            this.cb_fileOn.Location = new System.Drawing.Point(107, 95);
-            this.cb_fileOn.Name = "cb_fileOn";
-            this.cb_fileOn.Size = new System.Drawing.Size(120, 16);
-            this.cb_fileOn.TabIndex = 16;
-            this.cb_fileOn.Text = "是否开启日期搜索";
-            this.cb_fileOn.UseVisualStyleBackColor = true;
-            this.cb_fileOn.CheckedChanged += new System.EventHandler(this.cb_fileOn_CheckedChanged);
-            // 
             // panel4
             // 
             this.panel4.Controls.Add(this.lb_page);
@@ -299,35 +362,14 @@
             this.panel4.Size = new System.Drawing.Size(810, 44);
             this.panel4.TabIndex = 1;
             // 
-            // btn_home
+            // lb_page
             // 
-            this.btn_home.Location = new System.Drawing.Point(281, 13);
-            this.btn_home.Name = "btn_home";
-            this.btn_home.Size = new System.Drawing.Size(75, 23);
-            this.btn_home.TabIndex = 0;
-            this.btn_home.Text = "首页";
-            this.btn_home.UseVisualStyleBackColor = true;
-            this.btn_home.Click += new System.EventHandler(this.btn_home_Click);
-            // 
-            // btn_prePage
-            // 
-            this.btn_prePage.Location = new System.Drawing.Point(374, 13);
-            this.btn_prePage.Name = "btn_prePage";
-            this.btn_prePage.Size = new System.Drawing.Size(75, 23);
-            this.btn_prePage.TabIndex = 1;
-            this.btn_prePage.Text = "上一页";
-            this.btn_prePage.UseVisualStyleBackColor = true;
-            this.btn_prePage.Click += new System.EventHandler(this.btn_prePage_Click);
-            // 
-            // btn_nextPage
-            // 
-            this.btn_nextPage.Location = new System.Drawing.Point(467, 13);
-            this.btn_nextPage.Name = "btn_nextPage";
-            this.btn_nextPage.Size = new System.Drawing.Size(75, 23);
-            this.btn_nextPage.TabIndex = 2;
-            this.btn_nextPage.Text = "下一页";
-            this.btn_nextPage.UseVisualStyleBackColor = true;
-            this.btn_nextPage.Click += new System.EventHandler(this.btn_nextPage_Click);
+            this.lb_page.AutoSize = true;
+            this.lb_page.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lb_page.Location = new System.Drawing.Point(26, 18);
+            this.lb_page.Name = "lb_page";
+            this.lb_page.Size = new System.Drawing.Size(0, 14);
+            this.lb_page.TabIndex = 4;
             // 
             // btn_lastPage
             // 
@@ -339,21 +381,35 @@
             this.btn_lastPage.UseVisualStyleBackColor = true;
             this.btn_lastPage.Click += new System.EventHandler(this.btn_lastPage_Click);
             // 
-            // lb_page
+            // btn_nextPage
             // 
-            this.lb_page.AutoSize = true;
-            this.lb_page.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lb_page.Location = new System.Drawing.Point(26, 18);
-            this.lb_page.Name = "lb_page";
-            this.lb_page.Size = new System.Drawing.Size(0, 14);
-            this.lb_page.TabIndex = 4;
+            this.btn_nextPage.Location = new System.Drawing.Point(467, 13);
+            this.btn_nextPage.Name = "btn_nextPage";
+            this.btn_nextPage.Size = new System.Drawing.Size(75, 23);
+            this.btn_nextPage.TabIndex = 2;
+            this.btn_nextPage.Text = "下一页";
+            this.btn_nextPage.UseVisualStyleBackColor = true;
+            this.btn_nextPage.Click += new System.EventHandler(this.btn_nextPage_Click);
             // 
-            // Column1
+            // btn_prePage
             // 
-            this.Column1.DataPropertyName = "DirectoryName";
-            this.Column1.HeaderText = "目录";
-            this.Column1.Name = "Column1";
-            this.Column1.Visible = false;
+            this.btn_prePage.Location = new System.Drawing.Point(374, 13);
+            this.btn_prePage.Name = "btn_prePage";
+            this.btn_prePage.Size = new System.Drawing.Size(75, 23);
+            this.btn_prePage.TabIndex = 1;
+            this.btn_prePage.Text = "上一页";
+            this.btn_prePage.UseVisualStyleBackColor = true;
+            this.btn_prePage.Click += new System.EventHandler(this.btn_prePage_Click);
+            // 
+            // btn_home
+            // 
+            this.btn_home.Location = new System.Drawing.Point(281, 13);
+            this.btn_home.Name = "btn_home";
+            this.btn_home.Size = new System.Drawing.Size(75, 23);
+            this.btn_home.TabIndex = 0;
+            this.btn_home.Text = "首页";
+            this.btn_home.UseVisualStyleBackColor = true;
+            this.btn_home.Click += new System.EventHandler(this.btn_home_Click);
             // 
             // contextMenuStrip1
             // 
@@ -377,53 +433,6 @@
             this.toolStripMenuItem2.Text = "打开文件";
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
-            // bizNameDataGridViewTextBoxColumn
-            // 
-            this.bizNameDataGridViewTextBoxColumn.DataPropertyName = "BizName";
-            this.bizNameDataGridViewTextBoxColumn.HeaderText = "BizName";
-            this.bizNameDataGridViewTextBoxColumn.Name = "bizNameDataGridViewTextBoxColumn";
-            this.bizNameDataGridViewTextBoxColumn.Visible = false;
-            // 
-            // fileNameDataGridViewTextBoxColumn
-            // 
-            this.fileNameDataGridViewTextBoxColumn.DataPropertyName = "ShowName";
-            this.fileNameDataGridViewTextBoxColumn.HeaderText = "文件名";
-            this.fileNameDataGridViewTextBoxColumn.Name = "fileNameDataGridViewTextBoxColumn";
-            // 
-            // fileOnDataGridViewTextBoxColumn
-            // 
-            this.fileOnDataGridViewTextBoxColumn.DataPropertyName = "FileOn";
-            this.fileOnDataGridViewTextBoxColumn.HeaderText = "创建日期";
-            this.fileOnDataGridViewTextBoxColumn.Name = "fileOnDataGridViewTextBoxColumn";
-            // 
-            // filePathDataGridViewTextBoxColumn
-            // 
-            this.filePathDataGridViewTextBoxColumn.DataPropertyName = "FilePath";
-            this.filePathDataGridViewTextBoxColumn.HeaderText = "文件路径";
-            this.filePathDataGridViewTextBoxColumn.Name = "filePathDataGridViewTextBoxColumn";
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "状态";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            // 
-            // fileSizeDataGridViewTextBoxColumn
-            // 
-            this.fileSizeDataGridViewTextBoxColumn.DataPropertyName = "FileSize";
-            this.fileSizeDataGridViewTextBoxColumn.HeaderText = "文件大小";
-            this.fileSizeDataGridViewTextBoxColumn.Name = "fileSizeDataGridViewTextBoxColumn";
-            // 
-            // msgDataGridViewTextBoxColumn
-            // 
-            this.msgDataGridViewTextBoxColumn.DataPropertyName = "Msg";
-            this.msgDataGridViewTextBoxColumn.HeaderText = "Msg";
-            this.msgDataGridViewTextBoxColumn.Name = "msgDataGridViewTextBoxColumn";
-            // 
-            // fileModelDtoBindingSource
-            // 
-            this.fileModelDtoBindingSource.DataSource = typeof(ISFileAndContent.Model.FileModelDto);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -440,13 +449,13 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dg_pageData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileModelDtoBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dg_pageData)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.fileModelDtoBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
